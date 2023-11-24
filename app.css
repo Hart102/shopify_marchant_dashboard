@@ -1,4 +1,3 @@
-/* @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300&display=swap"); */
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;500&display=swap");
 
 :root {
@@ -300,12 +299,10 @@ nav .user button {
 .content .content-body .progess {
   width: 200px;
   position: relative;
-}
-
-.content .content-body .progess p {
   margin: var(--sm-unit) 0;
   font-weight: 300;
 }
+
 
 .content .content-body .progess .level {
   width: 100px;
@@ -317,10 +314,9 @@ nav .user button {
   left: 10px;
 }
 
-.content .content-body .progess .level::after {
-  content: "";
+.content .content-body .progess .level .layer {
   position: absolute;
-  width: 30%;
+  /* width: 30%; */
   height: 100%;
   background: var(--grey-300);
 }

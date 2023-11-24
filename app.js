@@ -5,6 +5,8 @@ const menu_btn = selector(".menu_btn");
 const menu = selector(".menu");
 const openModelBtn = selector(".open-model-btn");
 const cardContainer = selector(".card-container");
+const progessIndicator = selector(".progess-indicator");
+const progessBar = selector(".layer");
 
 const toggleFunction = (element, className) => {
   if ((element, className)) {
@@ -182,28 +184,42 @@ cardContent.forEach((card, cardIndex) =>
   })
 );
 
+let numberOfSelectedOptions = 0,
+  progessBarLevel = 0;
+
 // Add and Remove Selected Icon Functionality
 for (let i = 0; i < NotSelected.length; ) {
   let index = 0;
-  let progress_level = 20;
+
   // Add selected Icon functionality
   NotSelected[i].addEventListener("click", () => {
     index = i - 1;
-    NotSelected[index].classList.add("hidden");
-    spinner[index].classList.remove("hidden");
-    progress_level += progress_level;
+    numberOfSelectedOptions += 1; // Increase Number of selected options
+    progessBarLevel += 20; // Increase progess bar level
+    progessBar.style.width = `${progessBarLevel}%`; // Display progess bar level
+
+    NotSelected[index].classList.add("hidden"); // Hide default icon
+    spinner[index].classList.remove("hidden"); // Display Spinner icon
 
     setTimeout(() => {
-      spinner[index].classList.add("hidden");
-      selected[index].classList.remove("hidden");
+      spinner[index].classList.add("hidden"); // Hide Spiner icon
+      selected[index].classList.remove("hidden"); // Display Selected mark icon
     }, 300);
+
+    progessIndicator.innerHTML = `${numberOfSelectedOptions} / ${NotSelected.length}`;
   });
 
-  // Remove selected Icon functionality
+  // Remove selected Icon functionality || Unselect Function
   selected[i].addEventListener("click", () => {
     index = i - 1;
+    numberOfSelectedOptions -= 1; // Decrease Number of selected options
+    progessBarLevel -= 20; // Decrease progess bar level
+    progessBar.style.width = `${progessBarLevel}%`;
+
     NotSelected[index].classList.remove("hidden");
     selected[index].classList.add("hidden");
+    progessIndicator.innerHTML = `${numberOfSelectedOptions} / ${NotSelected.length}`;
   });
+
   i++;
 }
