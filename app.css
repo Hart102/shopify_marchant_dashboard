@@ -54,29 +54,9 @@ body {
   opacity: 0;
 }
 
-.bg {
-  background: var(--light-bg);
-}
-
-/* not-selected */
-/* spinner */
-/* selected */
-
-.spinner {
-  animation: spinner infinite 0.6s;
-}
-
-@keyframes spinner {
-  0% {
-    transform: rotate(50deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.rotate {
-  transform: rotate(360deg);
+.rotate-icon {
+  transform: rotate(180deg);
+  transition: 0.3s;
 }
 
 a {
@@ -141,7 +121,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: var(--grey-300);
+  background: var(--grey-200);
   color: var(--grey-light);
 }
 
@@ -156,6 +136,10 @@ nav .search-bar {
   border-radius: var(--radius);
   background: var(--grey-200);
   border: 1px solid var(--grey-50);
+}
+
+nav .search-bar:hover{
+  border: 1.5px solid var(--grey-light);
 }
 
 nav .search-bar input {
@@ -184,7 +168,12 @@ nav .bell-icon {
   background: var(--grey-50);
 }
 
-nav .user {
+nav .bell-icon:hover, nav .model-info:hover{
+  color: var(--grey-100);
+  background: var(--grey-light);
+}
+
+nav .model-info {
   display: flex;
   align-items: center;
   padding-left: var(--sm-unit);
@@ -192,11 +181,7 @@ nav .user {
   background: var(--grey-100);
 }
 
-nav .user button {
-  color: var(--grey-light);
-}
-
-.user .status-inidcator {
+.status-inidcator {
   padding: var(--sm-unit);
   margin-left: var(--sm-unit);
   color: var(--grey-50);
@@ -204,7 +189,37 @@ nav .user button {
   background: #36fba1;
 }
 
-/*=== Notication styling start ===*/
+nav .desktop-logo,
+.model-info p:nth-child(1) {
+  display: block;
+}
+nav .mobile-logo {
+  display: none;
+}
+
+
+/*=== Notification styling start ===*/
+.notification{
+  padding: var(--md-unit) !important;
+  color: var(--grey-100);
+}
+
+.notification .alertIcon{
+  margin: 0 var(--sm-unit);
+  width: 25px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+}
+
+.notification .model-info{
+  margin-top: var(--sm-unit);
+}
+
+
+/*=== Menu styling start ===*/
 .menu {
   width: 350px;
   max-width: 80%;
@@ -250,12 +265,12 @@ nav .user button {
   border-top: 1px solid var(--light-bg);
 }
 
-.menu .manage-account a {
+.menu .manage-account a{
   border: 0;
   margin: var(--sm-unit) 0;
 }
 
-.menu .links a:focus {
+.menu .links a:focus, .notification .alertIcon:focus {
   border: 1px solid var(--grey-focused);
 }
 
@@ -269,6 +284,7 @@ nav .user button {
 .content .content-header {
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
   padding: var(--md-unit);
@@ -282,7 +298,7 @@ nav .user button {
   align-items: center;
 }
 
-.content .content-header .action button {
+.content .content-header button {
   margin: 0 var(--md-unit);
   background: var(--light-bg);
 }
@@ -303,7 +319,6 @@ nav .user button {
   font-weight: 300;
 }
 
-
 .content .content-body .progess .level {
   width: 100px;
   height: 5px;
@@ -316,7 +331,6 @@ nav .user button {
 
 .content .content-body .progess .level .layer {
   position: absolute;
-  /* width: 30%; */
   height: 100%;
   background: var(--grey-300);
 }
@@ -368,6 +382,12 @@ nav .user button {
   box-shadow: 0px 0px 1px 0.1em var(--grey-100);
 }
 
+.content ul button:hover{
+  background: var(--grey-300);
+  box-shadow: 0px 0px 2px 0.2em var(--grey-100);
+
+}
+
 .content ul button:nth-child(2) {
   margin: 0 var(--md-unit);
   background: transparent;
@@ -376,26 +396,92 @@ nav .user button {
   color: var(--grey-300);
 }
 
-nav .desktop-logo,
-.user p:nth-child(1) {
-  display: block;
-}
-nav .mobile-logo {
+/*========== Footer Styling Start ==========*/
+footer{
+  width: 100%;
   display: none;
+  padding: var(--md-unit) 0;
+  background: var(--white);
+  border-top: 1px solid var(--grey-light);
+  z-index: 900;
+  position: fixed;
+  bottom: 0%;
+}
+
+footer i, footer p {
+  font-size: 2em !important;
+}
+
+footer p, footer .desc{
+  color: var(--grey-100);
+
+}
+
+footer .desc{
+  width: 90%;
+  margin: 0 auto 2em auto;
+  border-radius: var(--radius);
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background: var(--white);
+  box-shadow: 0px 0px 50px 0.5px var(--grey-light);
+}
+
+footer .icons{
+  display: flex;
+  justify-content: space-around;
+  color: var(--grey-focused);
+}
+
+footer .line{
+  margin-top: 2em;
+  width: 100%;
+  height: 5px;
+  position: relative;
+}
+
+footer .line .layer{
+  width: 50%;
+  height: 100%;
+  border-radius: 10px;
+  left: 50%;
+  transform: translate(-50%);
+  background: var(--grey-300);
+  position: absolute;
+}
+/*========== Footer Styling End ==========*/
+
+
+.spinner {
+  animation: spinner infinite 0.6s;
+}
+
+.selected-option-bg {
+  background: var(--light-bg);
+}
+
+@keyframes spinner {
+  0% {
+    transform: rotate(50deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 /* Mobile View */
 @media (max-width: 776px) {
   nav .desktop-logo,
-  .user p:nth-child(1),
-  .content ul .product-image {
-    display: none;
+  .model-info p:nth-child(1),
+  .content ul .product-image, .select-plan-desktop {
+    display: none !important;
   }
-  nav .mobile-logo {
-    display: block;
+  nav .mobile-logo,  .select-plan-mobile, .footer {
+    display: block !important;
   }
 
-  nav .user,
+  nav .model-info,
   nav .bell-icon {
     background: transparent;
   }
@@ -404,4 +490,9 @@ nav .mobile-logo {
   .content .content-header {
     border-radius: 0;
   }
+
+  .select-plan-mobile{
+    margin: var(--sm-unit) 0 !important;
+  }
+
 }

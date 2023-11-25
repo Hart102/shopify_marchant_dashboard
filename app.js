@@ -1,27 +1,17 @@
 const selector = (element) => document.querySelector(element);
 const selectAll = (element) => document.querySelectorAll(element);
 
+// Navbar Elements
 const menu_btn = selector(".menu_btn");
-const menu = selector(".menu");
+const menuListModel = selector(".menu-list");
 const openModelBtn = selector(".open-model-btn");
+const notificationModel = selector(".notification");
+const bellIcon = selector(".bell-icon");
+
+// Body Elements
 const cardContainer = selector(".card-container");
 const progessIndicator = selector(".progess-indicator");
 const progessBar = selector(".layer");
-
-const toggleFunction = (element, className) => {
-  if ((element, className)) {
-    element.classList.toggle(className);
-  }
-};
-
-// Open and close menu functionality
-menu_btn.addEventListener("click", () => toggleFunction(menu, "hidden"));
-
-// Open and close cards
-openModelBtn.addEventListener("click", () => {
-  toggleFunction(cardContainer, "open-model");
-  toggleFunction(openModelBtn, "rotate");
-});
 
 const cardObject = [
   {
@@ -138,7 +128,7 @@ const card_template = (data) => {
               <p class="title">${data.title}</p>
             </label>
             <input type="radio" name="option" class="radio" id="${data.id}" />
-            <div class="option justify-between">
+            <div class="option open-option justify-between">
               <div>
                 <div class="description">
                   <p>${data.description}</p>
@@ -165,10 +155,31 @@ cardObject.map(
 
 const cardContent = selectAll(".content-card");
 const radioBtn = selectAll(".radio");
-
 const NotSelected = selectAll(".not-selected");
 const spinner = selectAll(".spinner");
 const selected = selectAll(".selected");
+
+const toggleFunction = (element, className) => {
+  if ((element, className)) {
+    element.classList.toggle(className);
+  }
+};
+
+// Open and close menu functionality
+menu_btn.addEventListener("click", () =>
+  toggleFunction(menuListModel, "hidden")
+);
+
+// Open and close notifcation Model
+bellIcon.addEventListener("click", () =>
+  toggleFunction(notificationModel, "hidden")
+);
+
+// Open and close cards
+openModelBtn.addEventListener("click", () => {
+  toggleFunction(cardContainer, "open-model");
+  toggleFunction(openModelBtn, "rotate-icon");
+});
 
 // Add bacground to selected option
 cardContent.forEach((card, cardIndex) =>
@@ -176,9 +187,9 @@ cardContent.forEach((card, cardIndex) =>
     // Indicate selected option
     btn.addEventListener("click", () => {
       if (cardIndex == btnIndex) {
-        card.classList.toggle("bg");
+        card.classList.toggle("selected-option-bg");
       } else {
-        card.classList.remove("bg");
+        card.classList.remove("selected-option-bg");
       }
     });
   })
