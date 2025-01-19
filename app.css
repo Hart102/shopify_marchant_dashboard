@@ -339,6 +339,7 @@ nav .mobile-logo {
   padding: var(--md-unit);
   border-radius: var(--sm-unit);
   color: var(--grey-100);
+  cursor: pointer;
 }
 
 .content ul li {
